@@ -1,4 +1,3 @@
-# require "active_support/core_ext/securerandom"
 
 class Application < ApplicationRecord
   has_many :chats
