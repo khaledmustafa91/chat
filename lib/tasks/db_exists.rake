@@ -1,13 +1,11 @@
 namespace :db do
   desc 'Checks if the database exists'
   task :exists do
-    begin
-      Rake::Task['environment'].invoke
-      ActiveRecord::Base.connection
-    rescue
-      exit 1
-    else
-      exit 0
-    end
+    Rake::Task['environment'].invoke
+    ActiveRecord::Base.connection
+  rescue StandardError
+    exit 1
+  else
+    exit 0
   end
 end
