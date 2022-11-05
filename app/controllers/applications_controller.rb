@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :update, :destroy]
+  before_action :set_application, only: %i[show update destroy]
 
   # GET /applications
   def index
@@ -39,13 +41,14 @@ class ApplicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_application
-      @application = Application.find_by_token!(params[:token])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def application_params
-      params.require(:application).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_application
+    @application = Application.find_by_token!(params[:token])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def application_params
+    params.require(:application).permit(:name)
+  end
 end

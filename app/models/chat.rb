@@ -6,7 +6,7 @@ class Chat < ApplicationRecord
 
   before_validation :set_chat_number, on: :create
 
-  scope :by_application_token, -> (token) { joins(:application).where(applications: { token: token })}
+  scope :by_application_token, ->(token) { joins(:application).where(applications: { token: token }) }
 
   def set_chat_number
     return unless application_id.present?
