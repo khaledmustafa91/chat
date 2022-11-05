@@ -50,10 +50,13 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'activerecord-import', '~> 1.0', '>= 1.0.8'
-gem 'elasticsearch'
+gem  'elasticsearch'
 gem 'interactor', '~> 3.1'
 gem 'redis-namespace', '~> 1.8'
-gem 'searchkick', '~> 5.0.1'
+gem 'searchkick', '~> 4.5.0'
 gem 'sidekiq', '~> 6.2'
 gem 'sidekiq-cron', '~> 1.1'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'will_paginate', '~> 3.3'
+gem "bunny", ">= 2.19.0"
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
