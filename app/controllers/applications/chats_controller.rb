@@ -4,30 +4,32 @@ class Applications::ChatsController < Applications::BaseController
 
   # GET /applications/:application_token/chats
   def index
-    @applications_chats = @application.chats
+    @chats = @application.chats
 
-    paginate collection: @applications_chats
+    paginate collection: @chats
   end
 
   # GET /applications/:application_token/chats/1
   def show
-    render json: @applications_chat
+    render json: @chat
   end
 
   # POST /applications/:application_token/chats
   def create
-    @applications_chat = @application.chats.new
+    @chat = @application.chats.new
 
-    if @applications_chat.save
-      render json: @applications_chat, status: :created
+    if @chat.save
+      render json: @chat, status: :created
     else
-      render json: @applications_chat.errors, status: :unprocessable_entity
+      render json: @chat.errors, status: :unprocessable_entity
     end
+    rescue ActiveRecord::RecordNotUnique
+      render json: { error: I18n.t('controllers.errors.uniqueness') }, status: :unprocessable_entity 
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chat
-      @applications_chat = @application.chats.find_by_chat_number!(params[:number])
+      @chat = @application.chats.find_by_chat_number!(params[:number])
     end
 end
