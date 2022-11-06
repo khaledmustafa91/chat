@@ -3,10 +3,11 @@
 class CreateMessages < ActiveRecord::Migration[5.2]
   def change
     create_table :messages do |t|
-      t.text :body
-      t.integer :message_number
+      t.text :body, null: false
+      t.integer :message_number, null: false
       t.belongs_to :chat
       t.timestamps
     end
+    add_index :messages, [:message_number], unique: true
   end
 end

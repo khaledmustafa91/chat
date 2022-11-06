@@ -6,6 +6,8 @@ class Message < ApplicationRecord
   belongs_to :chat
 
   validates_presence_of :body
+  validates_uniqueness_of :message_count, scope: :chat_id
+
   before_validation :set_message_number, on: :create
 
   def set_message_number
