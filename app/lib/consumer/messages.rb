@@ -7,5 +7,8 @@ class Consumer::Messages < Rabbitmq::Consumer
     message = Message.new(payload)
     raise StandardError, message.errors.messages unless message.save
     message.reindex
+
+    rescue ActiveRecord::RecordNotUnique
+      Rails.logger.error 'The record is not unique, please try again'
   end
 end
