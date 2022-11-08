@@ -16,15 +16,7 @@ class Applications::ChatsController < Applications::BaseController
 
   # POST /applications/:application_token/chats
   def create
-    @chat = @application.chats.new
-
-    if @chat.save
-      render json: @chat, status: :created
-    else
-      render json: @chat.errors, status: :unprocessable_entity
-    end
-    rescue ActiveRecord::RecordNotUnique
-      render json: { error: I18n.t('controllers.errors.uniqueness') }, status: :unprocessable_entity 
+    Producer::Chats.new.publish({ application_token: @application.token })
   end
 
   private
