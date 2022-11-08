@@ -11,7 +11,7 @@ RSpec.describe Chat, type: :model do
       expect(chat).to be_valid
     end
   end
-  
+
   context 'with invalid attributes' do
     it 'returns success' do
       expect(invalid_chat).to be_invalid
