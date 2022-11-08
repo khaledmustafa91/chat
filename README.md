@@ -1,24 +1,51 @@
-# README
+This is a chat system through this app you can create applications, chat to each application and message for each chats,
+can search on chat messages
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+****Tools i have used****
 
-Things you may want to cover:
+1- `elasticsearch` For searching on chat messages
 
-* Ruby version
+2- `Rabbitmq` for insert messages and chats to database
 
-* System dependencies
+3- `Sidekiq` for updating Counts colums
 
-* Configuration
+in th following steps will explain how you can use this sysyem with examples
 
-* Database creation
 
-* Database initialization
+First run this command to build the App
 
-* How to run the test suite
+```
+docker-compose build
+```
+Then up your App
+```
+docker-compose up
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+There is multiple endpoints avalilable to you
+First endpoint responsible for creating a new application
 
-* Deployment instructions
+```
+POST /applications
+```
+JSON example of request
+```json
+{
+  "application": {
+        "name": "App #1"
+    }
+}
+```
 
-* ...
+JSON example of response
+```json
+{
+   "application": {
+        "name": "App #1",
+        "token": "8d6074d115394c14bd50f093d",
+        "chats_count": null,
+        "created_at": "2022-11-08T23:18:34.000Z",
+        "updated_at": "2022-11-08T23:18:34.000Z"
+    }
+}
+```
