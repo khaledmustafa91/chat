@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe '/applications', type: :request do
+RSpec.describe ApplicationsController, type: :request do
   let(:valid_attributes) { attributes_for(:application) }
   let(:invalid_attributes) { attributes_for(:application, :invalid) }
   let(:application) { create(:application) }
@@ -36,9 +36,10 @@ RSpec.describe '/applications', type: :request do
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Application' do
+      it 'fail and return errors' do
         post applications_url, params: { application: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
+        expect(parsed_response_body[:name]).to be_present
       end
     end
   end
@@ -46,10 +47,10 @@ RSpec.describe '/applications', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       it 'updates the requested application' do
-        patch application_url(application.token), params: { application: { name: "New" } }, as: :json
+        patch application_url(application.token), params: { application: { name: 'New' } }, as: :json
         application.reload
         expect(response).to have_http_status(:ok)
-        expect(application.name).to eq("New")
+        expect(application.name).to eq('New')
       end
     end
 
