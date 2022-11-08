@@ -4,6 +4,6 @@ class UpdateChatMessageCountJob < ApplicationJob
   queue_as :default
 
   def perform
-    Chats::UpdateMessageCount.call
+    Chat::UpdateMessageCount.call
   end
 end
