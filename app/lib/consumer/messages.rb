@@ -4,7 +4,7 @@ class Consumer::Messages < Rabbitmq::Consumer
   def on_receive(properties, payload, delivery_info = nil)
     return if payload.nil?
 
-    message = Message.new(payload)
+    message = Message.find_or_initialize_by(payload)
     raise StandardError, message.errors.messages unless message.save
     message.reindex
 
