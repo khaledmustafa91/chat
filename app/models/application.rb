@@ -12,4 +12,10 @@ class Application < ApplicationRecord
 
     self.token = Digest::SHA1.hexdigest(name)[0..24]
   end
+
+  def strip_whitespace
+    return unless name.present?
+
+    self.name = self.name.strip 
+  end
 end

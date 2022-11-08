@@ -18,6 +18,7 @@ class ApplicationsController < ApplicationController
   # POST /applications
   def create
     @application = Application.new(application_params)
+    @application.strip_whitespace
 
     if @application.save
       render json: @application, status: :created
