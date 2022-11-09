@@ -4,7 +4,10 @@ class Chat < ApplicationRecord
   has_many :messages
   belongs_to :application
 
-  before_validation :set_chat_number
+  before_validation :set_chat_number, on: :create
+  validates_uniqueness_of :chat_number, scope: :application_id
+
+  scope :by_application_token, ->(token) { joins(:application).where(applications: { token: token }) }
 
   def set_chat_number
     return unless application_id.present?

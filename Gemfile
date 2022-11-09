@@ -29,6 +29,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+group :test do
+  gem 'database_cleaner-active_record'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,11 +52,14 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'activerecord-import', '~> 1.0', '>= 1.0.8'
+gem 'bunny', '>= 2.19.0'
 gem 'elasticsearch'
 gem 'interactor', '~> 3.1'
 gem 'redis-namespace', '~> 1.8'
-gem 'searchkick', '~> 5.0.1'
+gem 'searchkick', '~> 4.5.0'
 gem 'sidekiq', '~> 6.2'
 gem 'sidekiq-cron', '~> 1.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'will_paginate', '~> 3.3'
