@@ -1,18 +1,17 @@
-This is a chat system through this app you can create applications, chat to each application and message for each chats,
-can search on chat messages
+This is a chat system through this app you can create applications, chat with each application, and message for each chat, also you can search on chat messages
 
-****Tools****
+### Tools
 
-1- `elasticsearch` for chat messages search 
+1- `Elasticsearch` for chat messages search 
 
-2- `Rabbitmq` for insert messages and chats to database
+2- `Rabbitmq` for inserting messages and chats into the database
 
 3- `Sidekiq` for updating columns counts
 
-in th following steps will explain how you can use this system with examples
+the following steps will explain how you can use this system with examples
 
 
-First run this command to build the App
+First, run this command to build the App
 
 ```
 docker-compose build
@@ -22,11 +21,11 @@ Then up your App
 docker-compose up
 ```
 
-There is multiple endpoints avalilable to you
+There are multiple endpoints available to you
 
-***Applications***
+### Applications
 
-Create applications
+**Create**
 
 ```
 POST /applications
@@ -42,7 +41,7 @@ JSON example of request
 }
 ```
 
-JSON example of response
+JSON example of the response
 
 ```json
 {
@@ -55,13 +54,13 @@ JSON example of response
     }
 }
 ```
-Show application
+**Show**
 
 ```
 GET /application/:application_token
 ```
 
-JSON example of response
+JSON example of the response
 
 ```json
 {
@@ -74,7 +73,7 @@ JSON example of response
     }
 }
 ```
-Update application
+**Update**
 
 ```
 PUT /application/:application_token
@@ -89,7 +88,7 @@ JSON example of request
 }
 ```
 
-JSON example of response
+JSON example of the response
 ```json
 {
     "application": {
@@ -102,11 +101,12 @@ JSON example of response
 }
 ```
 
-Note That, you will use application token on any request of the system
 
-**Chats**
+**Note That**, you will use the application token on any request of the system
 
-Create chat
+### Chats
+
+**Create**
 
 **Note:** this endpoint use rabbitmq
 
@@ -114,13 +114,13 @@ Create chat
 POST applications/:application_token/chats
 ```
 
-Show all application chats
+**Show all application chats**
 
 ```
 GET applications/:application_token/chats
 ```
 
-JSON example of response
+JSON example of the response
 ```json
 {
     "chats": [
@@ -140,13 +140,13 @@ JSON example of response
 }
 ```
 
-Show action
+**Show**
 
 ```
 GET applications/:application_token/chats/:number
 ```
 
-JSON example of response
+JSON example of the response
 
 ```json
 {
@@ -157,15 +157,15 @@ JSON example of response
 }
 ```
 
-**Message**
+### Messages
 
-Create a new message for a specific application to specific chat
+**Create a new message for a specific application to specific chat**
 
 ```
 POST /applications/:application_token/chats/:chat_number/messages
 ```
 
-Request body
+JSON example of request body
 ```json
 {
   "message": {
@@ -174,13 +174,13 @@ Request body
 }
 ```
 
-Read all chat message to specific application
+**Read all chat messages to specific applications**
 
 ```
 GET /applications/:application_token/chats/:chat_number/messages
 ```
 
-JSON example of response
+JSON example of the response
 
 ```json
 {
@@ -202,13 +202,13 @@ JSON example of response
 ```
 
 
-Read specific message
+**Read specific message**
 
 ```
 GET /applications/:application_token/chats/:chat_number/messages/:number
 ```
 
-Response example
+JSON example of the response
 
 ```json
 {
@@ -219,7 +219,7 @@ Response example
 }
 ```
 
-Update
+**Update specific message**
 
 ```
 PUT /applications/:application_token/chats/:chat_number/messages/:number
@@ -236,7 +236,7 @@ JSON example of request body
 ```
 
 
-Search on specific chat
+**Search on specific chat**
 
 **Note:** This endpoint used elasticsearch
 
@@ -251,7 +251,7 @@ JSON example of request body
 }
 ```
 
-JSON example of response body
+JSON example of the response body
 
 ```json
 {
