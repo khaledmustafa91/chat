@@ -26,19 +26,5 @@ RSpec.describe Chat, type: :model do
         expect(chat.errors.messages[:application]).to be_present
       end
     end
-
-    # context 'when chat number duplicate on same application' do
-    #   let(:application) { build_stubbed(:application) }
-    #   let(:chat_two) { create(:chat, application: application, chat_number: 1) }
-    #   let(:duplicate_chat) { create(:chat, application: application, chat_number: 1) }
-    #   before do
-    #     chat_two
-    #     duplicate_chat
-    #   end
-    #   it 'fails and return uniqueness error' do
-    #     expect(chat_two).to be_invalid
-    #     expect(chat_two.errors.messages[:chat_number]).to be_present
-    #   end
-    # end
   end
 end
