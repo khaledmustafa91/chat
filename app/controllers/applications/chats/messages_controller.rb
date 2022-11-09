@@ -32,7 +32,8 @@ class Applications::Chats::MessagesController < Applications::BaseController
 
   # PATCH/PUT /applications/:application_token/chats/:chat_number/messages/1
   def update
-    Producer::Messages.new.publish(message_params.merge(chat_id: @chat.id))
+    Producer::Messages.new.publish(
+      message_params.merge(message_number: @message.message_number, chat_id: @message.chat.id))
   end
 
   private

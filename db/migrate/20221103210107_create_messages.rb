@@ -8,6 +8,6 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.belongs_to :chat
       t.timestamps
     end
-    add_index :messages, [:message_number], unique: true
+    add_index :messages, [:chat_id, :message_number], unique: true
   end
 end

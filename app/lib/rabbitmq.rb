@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rabbitmq
+class Rabbitmq
   def self.initialize_connection_pool
     @connection_pools = ConnectionPool.new(size: 5) do
       connection = new_connection
