@@ -1,15 +1,15 @@
 This is a chat system through this app you can create applications, chat to each application and message for each chats,
 can search on chat messages
 
-****Tools i have used****
+****Tools****
 
-1- `elasticsearch` For searching on chat messages
+1- `elasticsearch` for chat messages search 
 
 2- `Rabbitmq` for insert messages and chats to database
 
-3- `Sidekiq` for updating Counts colums
+3- `Sidekiq` for updating columns counts
 
-in th following steps will explain how you can use this sysyem with examples
+in th following steps will explain how you can use this system with examples
 
 
 First run this command to build the App
@@ -25,12 +25,15 @@ docker-compose up
 There is multiple endpoints avalilable to you
 
 ***Applications***
+
 Create applications
 
 ```
 POST /applications
 ```
+
 JSON example of request
+
 ```json
 {
   "application": {
@@ -40,12 +43,13 @@ JSON example of request
 ```
 
 JSON example of response
+
 ```json
 {
    "application": {
         "name": "App #1",
         "token": "8d6074d115394c14bd50f093d",
-        "chats_count": null,
+        "chats_count": 0,
         "created_at": "2022-11-08T23:18:34.000Z",
         "updated_at": "2022-11-08T23:18:34.000Z"
     }
@@ -64,7 +68,7 @@ JSON example of response
    "application": {
         "name": "App #1",
         "token": "8d6074d115394c14bd50f093d",
-        "chats_count": null,
+        "chats_count": 0,
         "created_at": "2022-11-08T23:18:34.000Z",
         "updated_at": "2022-11-08T23:18:34.000Z"
     }
@@ -101,19 +105,22 @@ JSON example of response
 Note That, you will use application token on any request of the system
 
 **Chats**
-Create endpoint
+
+Create chat
+
+**Note:** this endpoint use rabbitmq
 
 ```
 POST applications/:application_token/chats
 ```
-**Note:** use rabbitmq 
 
 Show all application chats
+
 ```
 GET applications/:application_token/chats
 ```
 
-Response Example
+JSON example of response
 ```json
 {
     "chats": [
@@ -138,7 +145,9 @@ Show action
 ```
 GET applications/:application_token/chats/:number
 ```
-Response Example
+
+JSON example of response
+
 ```json
 {
     "chat": {
@@ -149,7 +158,8 @@ Response Example
 ```
 
 **Message**
-Create a new message for a spaciefic appliaction to spacific chat
+
+Create a new message for a specific application to specific chat
 
 ```
 POST /applications/:application_token/chats/:chat_number/messages
@@ -164,13 +174,13 @@ Request body
 }
 ```
 
-Read all chat message to spacific application
+Read all chat message to specific application
 
 ```
 GET /applications/:application_token/chats/:chat_number/messages
 ```
 
-Response Example
+JSON example of response
 
 ```json
 {
@@ -192,7 +202,8 @@ Response Example
 ```
 
 
-Read spacific message
+Read specific message
+
 ```
 GET /applications/:application_token/chats/:chat_number/messages/:number
 ```
@@ -214,7 +225,8 @@ Update
 PUT /applications/:application_token/chats/:chat_number/messages/:number
 ```
 
-Request body
+JSON example of request body
+
 ```json
 {
   "message": {
@@ -224,21 +236,23 @@ Request body
 ```
 
 
-Search on spacific chat
+Search on specific chat
+
 **Note:** This endpoint used elasticsearch
 
 ```
 GET /applications/:application_token/chats/:chat_number/messages
 ```
 
-Request body
+JSON example of request body
 ```json
 {
     "query": "hello",
 }
 ```
 
-Response body
+JSON example of response body
+
 ```json
 {
     "messages": [
