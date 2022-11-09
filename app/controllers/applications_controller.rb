@@ -35,11 +35,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # DELETE /applications/1
-  def destroy
-    @application.destroy
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

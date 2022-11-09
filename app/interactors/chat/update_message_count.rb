@@ -1,4 +1,4 @@
-class Chats::UpdateMessageCount
+class Chat::UpdateMessageCount
   include Interactor
 
   def call

@@ -5,6 +5,7 @@ class Chat < ApplicationRecord
   belongs_to :application
 
   before_validation :set_chat_number, on: :create
+  validates_uniqueness_of :chat_number, scope: :application_id
 
   scope :by_application_token, ->(token) { joins(:application).where(applications: { token: token }) }
 

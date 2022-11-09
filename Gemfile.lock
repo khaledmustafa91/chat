@@ -66,6 +66,10 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     diff-lcs (1.5.0)
     elasticsearch (7.13.3)
       elasticsearch-api (= 7.13.3)
@@ -278,6 +282,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bunny (>= 2.19.0)
   byebug
+  database_cleaner-active_record
   elasticsearch
   factory_bot_rails (~> 4.0)
   interactor (~> 3.1)
