@@ -11,7 +11,11 @@ This is a chat system through this app you can create applications, chat with ea
 the following steps will explain how you can use this system with examples
 
 
-First, run this command to build the App
+First, 
+```
+copy .env.copy to docker/development/.env path
+```
+Then, run this command to build the App
 
 ```
 docker-compose build
